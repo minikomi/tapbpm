@@ -1,0 +1,12 @@
+{
+  "name": "Tap bpm",
+  "description": "Tap bpm, Wait 2 seconds for reset.",
+  "version": "0.1",
+  "background": { "scripts": ["background.js"] },
+  "icons": {"16": "icon1.png"
+  },
+  "browser_action": {
+      "name": "Tap for bpm."
+  },
+  "manifest_version": 2
+}
