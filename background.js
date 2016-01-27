@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var currentBpm;
+var currentBpm = [];
 var lastTime;
 var resetTimeout;
 
@@ -14,15 +14,17 @@ function updateIcon() {
     var diff = thisTime - lastTime;
     var newBpm = (60 * 1000) / diff;
     chrome.browserAction.setIcon({path:"icon2.png"});
-    if(currentBpm) {
-      currentBpm = ((currentBpm + newBpm) / 2);
-    } else {
-      currentBpm = newBpm;
+    currentBpm.push(newBpm);
+    if(currentBpm.length > 10) {
+      currentBpm.shift();
     }
-    chrome.browserAction.setBadgeText({text: ""+Math.floor(currentBpm)});
+    var avg = 0;
+    currentBpm.forEach(function(v){avg += v});
+    avg = avg / currentBpm.length;
+    chrome.browserAction.setBadgeText({text: ""+Math.floor(avg)});
     clearTimeout(resetTimeout);
     resetTimeout = setTimeout(function(){
-      currentBpm = undefined;
+      currentBpm = [];
       lastTime = undefined;
       chrome.browserAction.setBadgeText({text: ""});
       chrome.browserAction.setIcon({path:"icon1.png"});
