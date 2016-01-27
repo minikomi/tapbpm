@@ -16,10 +16,10 @@ function updateIcon() {
     chrome.browserAction.setIcon({path:"icon2.png"});
     if(currentBpm) {
       currentBpm = ((currentBpm + newBpm) / 2);
-      chrome.browserAction.setBadgeText({text: ""+Math.floor(currentBpm)});
     } else {
       currentBpm = newBpm;
     }
+    chrome.browserAction.setBadgeText({text: ""+Math.floor(currentBpm)});
     clearTimeout(resetTimeout);
     resetTimeout = setTimeout(function(){
       currentBpm = undefined;
