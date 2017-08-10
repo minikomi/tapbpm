@@ -1,12 +1,27 @@
 {
-  "name": "Tap bpm",
-  "description": "Tap bpm, Wait 2 seconds for reset.",
-  "version": "0.1",
-  "background": { "scripts": ["background.js"] },
-  "icons": {"16": "icon1.png"
+  "manifest_version": 2,
+  "name": "Tap BPM",
+  "description": "Click repeatedly to calculate BPM, shown as a badge",
+  "version": "1.0",
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "16": "images/icon_16.png",
+    "32": "images/icon_32.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon.png"
   },
   "browser_action": {
-      "name": "Tap for bpm."
+    "name": "Tap for bpm."
   },
-  "manifest_version": 2
+  "commands": {
+    "tap-bpm": {
+      "description": "Tap to calculate BPM",
+      "suggested_key": {
+        "default": "Ctrl+Shift+0"
+      }
+    }
+  }
 }
